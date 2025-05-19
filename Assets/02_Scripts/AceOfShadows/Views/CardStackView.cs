@@ -57,4 +57,22 @@ public class CardStackView : MonoBehaviour
     {
         completionMessage.gameObject.SetActive(false);
     }
+
+    public void ClearScene()
+    {
+        DOTween.KillAll();
+
+        foreach (Transform card in stackA)
+        {
+            Destroy(card.gameObject);
+        }
+        foreach (Transform card in stackB)
+        {
+            Destroy(card.gameObject);
+        }
+
+        HideCompletionMessage();
+
+        UpdateCounters(0, 0);
+    }
 }
