@@ -487,7 +487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &149433642
 RectTransform:
   m_ObjectHideFlags: 0
@@ -495,14 +495,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149433641}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5341900307617818597}
   - {fileID: 1562397995}
-  m_Father: {fileID: 1977870795}
+  m_Father: {fileID: 2118137655}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -612,7 +612,7 @@ MonoBehaviour:
   backButton: {fileID: 1501254448}
   aceOfShadowsView: {fileID: 205996620}
   totalCards: 144
-  waitForNextCardSeconds: 0.1
+  waitForNextCardSeconds: 1
 --- !u!114 &205996622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1962,13 +1962,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenes:
   - {fileID: 205996616}
-  - {fileID: 1977870794}
+  - {fileID: 2118137654}
   - {fileID: 101775477}
   lobbyScene: {fileID: 436165174}
   aceSceneButton: {fileID: 765592884}
   wordsSceneButton: {fileID: 47759328}
   flameSceneButton: {fileID: 2015518772}
   fpsText: {fileID: 467878284}
+  defaultAvatar: {fileID: 7603056581912511840, guid: f3bf3f193e846ee468b01be1fd8a5750, type: 3}
+  dataUrl: https://private-624120-softgamesassignment.apiary-mock.com/v3/magicwords
 --- !u!1 &1095178604
 GameObject:
   m_ObjectHideFlags: 0
@@ -2018,7 +2020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1125467555
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2032,11 +2034,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1220336834}
-  m_Father: {fileID: 1977870795}
+  m_Father: {fileID: 2118137655}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 111, y: 41}
+  m_AnchoredPosition: {x: -799.00006, y: -449}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1125467556
@@ -8327,8 +8329,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1977870795}
   - component: {fileID: 1977870798}
-  - component: {fileID: 1977870797}
-  - component: {fileID: 1977870799}
   m_Layer: 0
   m_Name: MagicWords
   m_TagString: Untagged
@@ -8348,8 +8348,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 149433642}
-  - {fileID: 1125467555}
+  - {fileID: 2118137655}
   m_Father: {fileID: 1075322759}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -8357,23 +8356,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1977870797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1977870794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00fd69d736e03494695ec09d896a4e55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  backButton: {fileID: 1125467556}
-  leftPanel: {fileID: 5341900307617818598}
-  rightPanel: {fileID: 1868467949}
-  defaultAvatar: {fileID: 7603056581912511840, guid: f3bf3f193e846ee468b01be1fd8a5750, type: 3}
-  dataUrl: https://private-624120-softgamesassignment.apiary-mock.com/v3/magicwords
 --- !u!223 &1977870798
 Canvas:
   m_ObjectHideFlags: 0
@@ -8397,23 +8379,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
---- !u!114 &1977870799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1977870794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!1 &2015518770
 GameObject:
   m_ObjectHideFlags: 0
@@ -8535,6 +8500,102 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2015518770}
   m_CullTransparentMesh: 1
+--- !u!1 &2118137654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2118137655}
+  - component: {fileID: 2118137658}
+  - component: {fileID: 2118137657}
+  - component: {fileID: 2118137656}
+  m_Layer: 0
+  m_Name: MagicWordsGameplay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &2118137655
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118137654}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 149433642}
+  - {fileID: 1125467555}
+  m_Father: {fileID: 1977870795}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2118137656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118137654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!223 &2118137657
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118137654}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &2118137658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118137654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00fd69d736e03494695ec09d896a4e55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backButton: {fileID: 1125467556}
+  leftPanel: {fileID: 5341900307617818598}
+  rightPanel: {fileID: 1868467949}
+  defaultAvatar: {fileID: 7603056581912511840, guid: f3bf3f193e846ee468b01be1fd8a5750, type: 3}
 --- !u!1 &2138272090
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using static Events;
+using System;
 
 public class MainGameManager : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class MainGameManager : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI fpsText;
+
+    [SerializeField]
+    public Sprite defaultAvatar;
+    [SerializeField]
+    public string dataUrl = "https://private-624120-softgamesassignment.apiary-mock.com/v3/magicwords";
 
     private int currentSceneIndex = 0;
     private float deltaTime = 0.0f;
@@ -42,6 +48,12 @@ public class MainGameManager : MonoBehaviour
         });
 
         EventManager.Subscribe<EvGameSceneClosed>(OnGameSceneClosed);
+        QueryDialogueData();
+    }
+
+    private void QueryDialogueData()
+    {
+        StartCoroutine(DialogueDataCache.Initialize(dataUrl, defaultAvatar));
     }
 
     private void Update()

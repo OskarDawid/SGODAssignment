@@ -14,10 +14,7 @@ public class MagicWordsController : MonoBehaviour, IGameController
     public DialogueView leftPanel;
     public DialogueView rightPanel;
     public Sprite defaultAvatar;
-    public string dataUrl = "https://private-624120-softgamesassignment.apiary-mock.com/v3/magicwords";
 
-    private static DialogueModel cachedModel;
-    private static Dictionary<string, Sprite> cachedAvatars = new Dictionary<string, Sprite>();
     private bool leftPanelActive = false;
     private bool rightPanelActive = false;
 
@@ -25,9 +22,9 @@ public class MagicWordsController : MonoBehaviour, IGameController
     {
         InitializePanels();
 
-        if (cachedModel == null)
+        if (!DialogueDataCache.IsInitialized)
         {
-            StartCoroutine(InitializeDialogue());
+            StartCoroutine(WaitForDataAndDisplayDialogue());
         }
         else
         {
@@ -37,25 +34,14 @@ public class MagicWordsController : MonoBehaviour, IGameController
         backButton.onClick.AddListener(ExitScene);
     }
 
-    IEnumerator InitializeDialogue()
+    IEnumerator WaitForDataAndDisplayDialogue()
     {
-        using (UnityWebRequest request = UnityWebRequest.Get(dataUrl))
+        while (!DialogueDataCache.IsInitialized)
         {
-            yield return request.SendWebRequest();
-
-            if (request.result == UnityWebRequest.Result.Success)
-            {
-                cachedModel = new DialogueModel();
-                cachedModel.LoadData(request.downloadHandler.text);
-                yield return StartCoroutine(PreloadAvatars(cachedModel.Data.avatars));
-                InitializePanels();
-                StartCoroutine(DisplayDialogue());
-            }
-            else
-            {
-                Debug.LogError("Error loading data: " + request.error);
-            }
+            yield return null;
         }
+
+        StartCoroutine(DisplayDialogue());
     }
 
     void InitializePanels()
@@ -68,10 +54,10 @@ public class MagicWordsController : MonoBehaviour, IGameController
 
     IEnumerator DisplayDialogue()
     {
-        foreach (var dialogue in cachedModel.Data.dialogue)
+        foreach (var dialogue in DialogueDataCache.CachedModel.Data.dialogue)
         {
-            Avatar selectedAvatar = GetFirstValidAvatar(dialogue.name);
-            Sprite avatarSprite = GetAvatarSprite(selectedAvatar);
+            Avatar selectedAvatar = DialogueDataCache.GetFirstValidAvatar(dialogue.name, defaultAvatar);
+            Sprite avatarSprite = DialogueDataCache.GetAvatarSprite(selectedAvatar, defaultAvatar);
             DialogueView activePanel = GetActivePanel(selectedAvatar.position);
 
             if (activePanel == leftPanel && !leftPanelActive)
@@ -88,53 +74,6 @@ public class MagicWordsController : MonoBehaviour, IGameController
             activePanel.SetDialogue(dialogue, avatarSprite);
             yield return new WaitForSeconds(2f);
         }
-    }
-
-    IEnumerator PreloadAvatars(List<Avatar> avatars)
-    {
-        HashSet<string> loadedUrls = new HashSet<string>();
-
-        foreach (var avatar in avatars)
-        {
-            if (cachedAvatars.ContainsKey(avatar.url))
-                continue;
-
-            using (UnityWebRequest request = UnityWebRequestTexture.GetTexture(avatar.url))
-            {
-                request.timeout = 2;
-                yield return request.SendWebRequest();
-
-                if (request.result == UnityWebRequest.Result.Success)
-                {
-                    Texture2D texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
-                    Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
-                    cachedAvatars[avatar.url] = sprite;
-                }
-                else
-                {
-                    Debug.LogWarning($"Cannot load avatar: {avatar.url}");
-                }
-            }
-        }
-    }
-
-    Avatar GetFirstValidAvatar(string characterName)
-    {
-        List<Avatar> matchingAvatars = cachedModel.GetAllAvatarsForCharacter(characterName);
-        foreach (var avatar in matchingAvatars)
-        {
-            if (cachedAvatars.ContainsKey(avatar.url))
-            {
-                return avatar;
-            }
-        }
-
-        return new Avatar { name = characterName, url = "default", position = "right" };
-    }
-
-    Sprite GetAvatarSprite(Avatar avatar)
-    {
-        return avatar.url == "default" ? defaultAvatar : cachedAvatars.GetValueOrDefault(avatar.url, defaultAvatar);
     }
 
     DialogueView GetActivePanel(string position)
